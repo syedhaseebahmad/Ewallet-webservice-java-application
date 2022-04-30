@@ -1,0 +1,6 @@
+WEB SERVICES MINI PROJECT 2022 E-Wallet Application
+For details see the presentation file
+
+GROUP MEMBERS:
+	SANJEEWA PEDRIC SALAMANGE
+	AHMAD SYED HASEEB

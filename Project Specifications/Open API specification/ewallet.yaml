@@ -1,0 +1,230 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition - e-wallet application
+  version: v1
+servers:
+  - url: http://localhost:8000
+    description: server URL
+paths:
+  /api/v1/withdraw:
+    post:
+      tags:
+        - account-controller
+      operationId: Withdraw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /api/v1/transfer:
+    post:
+      tags:
+        - account-controller
+      operationId: Tranfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /api/v1/signup:
+    post:
+      tags:
+        - user-controller
+      operationId: Signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/v1/paybill:
+    post:
+      tags:
+        - account-controller
+      operationId: BillPayment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /api/v1/login:
+    post:
+      tags:
+        - user-controller
+      operationId: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/v1/deposit:
+    post:
+      tags:
+        - account-controller
+      operationId: Deposit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /api/v1/createaccount:
+    post:
+      tags:
+        - account-controller
+      operationId: CreateAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /api/v1/customerbyid/{UserEmail}:
+    get:
+      tags:
+        - account-controller
+      operationId: CheckBalance
+      parameters:
+        - name: UserEmail
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Account'
+  /api/v1/deleteaccount/{UserEmail}:
+    delete:
+      tags:
+        - account-controller
+      operationId: DeleteAccount
+      parameters:
+        - name: UserEmail
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        type:
+          type: integer
+          format: int32
+        currency:
+          type: string
+        to:
+          type: string
+        from:
+          type: string
+        amount:
+          type: number
+          format: double
+    User:
+      type: object
+      properties:
+        userEmail:
+          type: string
+        userPass:
+          type: string
+        userNic:
+          type: string
+        userLname:
+          type: string
+        userDob:
+          type: string
+        userGender:
+          type: string
+        userMstatus:
+          type: string
+        userFname:
+          type: string
+        userAddress:
+          type: string
+        userCity:
+          type: string
+    UserLogin:
+      type: object
+      properties:
+        userEmail:
+          type: string
+        userPassword:
+          type: string
+    Account:
+      type: object
+      properties:
+        currency:
+          type: string
+        altBalance:
+          type: number
+          format: double
+        userEmail:
+          type: string
+        balance:
+          type: number
+          format: double
